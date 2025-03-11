@@ -6,25 +6,27 @@ import java.util.HashMap;
 
 
 // } Driver Code Ends
-class Solution {
 
-    static int findFloor(int[] arr, int k) {
-        // write code here
-        int low=0;
-        int high=arr.length-1;
-        int result=-1;
-        while(low<=high){
-            int mid=low+(high-low)/2;
-            if(arr[mid]<=k){
-                result=mid;
-                low=mid+1;
-            }else{
-                high=mid-1;
+class Solution {
+    static int findFloor(int[] arr, int x) {
+        int low = 0, high = arr.length - 1;
+        int floorIndex = -1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] <= x) {
+                floorIndex = mid;  // Store last seen valid index
+                low = mid + 1;      // Search in the right half for the last occurrence
+            } else {
+                high = mid - 1;     // Search in the left half
             }
         }
-        return result;
+        return floorIndex;
     }
 }
+
+
 
 
 //{ Driver Code Starts.
@@ -50,10 +52,10 @@ public class Main {
             int idx = 0;
             for (int i : array) arr[idx++] = i;
 
-            int k = Integer.parseInt(br.readLine());
+            int x = Integer.parseInt(br.readLine());
             // Create Solution object and find closest sum
             Solution ob = new Solution();
-            int ans = ob.findFloor(arr, k);
+            int ans = ob.findFloor(arr, x);
 
             System.out.print(ans);
 
