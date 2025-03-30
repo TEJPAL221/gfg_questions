@@ -16,41 +16,31 @@ class Node {
 
 
 // } Driver Code Ends
-/*
-class Node{
-    int data;
-    Node next;
 
-    Node(int x){
-        data = x;
-        next = null;
-    }
-}
-*/
 class Solution {
     // Function to insert a node at the end of the linked list.
     Node insertAtEnd(Node head, int x) {
         // Create a new node with the given value
         Node newNode = new Node(x);
-
-        // If the list is empty, return the new node as the head
+        
+        // If the list is empty, the new node becomes the head
         if (head == null) {
             return newNode;
         }
-
-        // Traverse to the end of the list
-        Node current = head;
-        while (current.next != null) {
-            current = current.next;
+        
+        // Traverse to the last node
+        Node temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
         }
-
-        // Link the last node to the new node
-        current.next = newNode;
-
-        // Return the head of the modified list
+        
+        // Insert the new node at the end
+        temp.next = newNode;
+        
         return head;
     }
 }
+
 
 
 //{ Driver Code Starts.
