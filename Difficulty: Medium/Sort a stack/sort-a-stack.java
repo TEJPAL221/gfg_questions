@@ -18,30 +18,31 @@ class SortedStack {
                 a.pop();
             }
             System.out.println();
-        }
+        
+System.out.println("~");
+}
     }
 }
 // } Driver Code Ends
 
-
-/*Complete the function below*/
 class GfG {
     public Stack<Integer> sort(Stack<Integer> s) {
-        if(s.isEmpty() || s.size() == 1){
-            return s;
+        if (!s.isEmpty()) {
+            int temp = s.pop();
+            sort(s);                  // Recursively sort remaining stack
+            insertSorted(s, temp);    // Insert popped element in sorted order
         }
-        int top = s.pop();
-        sort(s);
-        order(s,top);
         return s;
     }
-    public static void order(Stack<Integer> stk, int element){
-        if(stk.isEmpty() || stk.peek() <= element){
-            stk.push(element);
+
+    private void insertSorted(Stack<Integer> s, int element) {
+        if (s.isEmpty() || element > s.peek()) {
+            s.push(element);
             return;
         }
-        int top = stk.pop();
-        order(stk,element);
-        stk.push(top);
+        
+        int temp = s.pop();
+        insertSorted(s, element);    // Recursive call to place element
+        s.push(temp);                // Push back the popped element
     }
 }
